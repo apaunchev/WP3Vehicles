@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://services.gcal.ac.uk" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.gcal.ac.uk" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://services.gcal.ac.uk/Imports">
+      <xsd:import namespace="http://services.gcal.ac.uk" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/VehiclesServer" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVehicleService_getStudentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStudentId" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getStudentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStudentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsCount" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getAllListings_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllListings" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getAllListings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllListingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsByPriceRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsByPriceRange" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsByPriceRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsByPriceRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsByColour_InputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsByColour" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_getListingsByColour_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getListingsByColourResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_toggleListingSold_InputMessage">
+    <wsdl:part name="parameters" element="tns:toggleListingSold" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_toggleListingSold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:toggleListingSoldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_deleteListing_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteListing" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_deleteListing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteListingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_createListing_InputMessage">
+    <wsdl:part name="parameters" element="tns:createListing" />
+  </wsdl:message>
+  <wsdl:message name="IVehicleService_createListing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createListingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IVehicleService">
+    <wsdl:operation name="getStudentId">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getStudentId" message="tns:IVehicleService_getStudentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getStudentIdResponse" message="tns:IVehicleService_getStudentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListingsCount">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsCount" message="tns:IVehicleService_getListingsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsCountResponse" message="tns:IVehicleService_getListingsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllListings">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getAllListings" message="tns:IVehicleService_getAllListings_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getAllListingsResponse" message="tns:IVehicleService_getAllListings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListingsByPriceRange">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsByPriceRange" message="tns:IVehicleService_getListingsByPriceRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsByPriceRangeResponse" message="tns:IVehicleService_getListingsByPriceRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getListingsByColour">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsByColour" message="tns:IVehicleService_getListingsByColour_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/getListingsByColourResponse" message="tns:IVehicleService_getListingsByColour_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="toggleListingSold">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/toggleListingSold" message="tns:IVehicleService_toggleListingSold_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/toggleListingSoldResponse" message="tns:IVehicleService_toggleListingSold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteListing">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/deleteListing" message="tns:IVehicleService_deleteListing_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/deleteListingResponse" message="tns:IVehicleService_deleteListing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createListing">
+      <wsdl:input wsaw:Action="http://services.gcal.ac.uk/IVehicleService/createListing" message="tns:IVehicleService_createListing_InputMessage" />
+      <wsdl:output wsaw:Action="http://services.gcal.ac.uk/IVehicleService/createListingResponse" message="tns:IVehicleService_createListing_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

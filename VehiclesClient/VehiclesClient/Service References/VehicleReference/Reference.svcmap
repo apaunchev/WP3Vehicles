@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3105b4fe-3a50-41a7-a869-7e41f4a52092" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/VehicleServer/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="services.gcal.ac.uk.wsdl" MetadataType="Wsdl" ID="3da096d2-6a0e-4f16-b6d5-3b31f16cd27b" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ea05769b-14f6-40f8-8c33-d64f6476199b" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+    <MetadataFile FileName="services.gcal.ac.uk.xsd" MetadataType="Schema" ID="b96aafe5-bbdb-4d8b-8884-1f4d384c3b77" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b95f2914-fa55-4134-a42d-99b80e4a1a19" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+    <MetadataFile FileName="VehiclesServer.xsd" MetadataType="Schema" ID="2f75d404-8fbf-4e6a-9a6c-bb2cb33f7244" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="be8346ea-da32-4847-9e20-1b3d4eb48769" SourceId="1" SourceUrl="http://localhost:9000/VehicleServer/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

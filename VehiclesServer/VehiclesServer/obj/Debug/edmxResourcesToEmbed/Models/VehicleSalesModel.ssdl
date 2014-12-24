@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VehicleSalesTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Colour">
+    <Key>
+      <PropertyRef Name="ColourID" />
+    </Key>
+    <Property Name="ColourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColourName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Metallic" Type="bit" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="VehicleStockItem">
+    <Key>
+      <PropertyRef Name="VehicleStockItemID" />
+    </Key>
+    <Property Name="VehicleStockItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColourID" Type="int" Nullable="false" />
+    <Property Name="VehicleTypeID" Type="int" Nullable="false" />
+    <Property Name="WheelTypeID" Type="int" Nullable="false" />
+    <Property Name="Make" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Model" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Registration" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="Automatic" Type="bit" Nullable="false" />
+    <Property Name="Sold" Type="bit" Nullable="false" />
+    <Property Name="StockEntryDate" Type="date" Nullable="false" />
+    <Property Name="DateNew" Type="date" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleTypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NoDoors" Type="int" Nullable="false" />
+    <Property Name="MaxSeats" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WheelType">
+    <Key>
+      <PropertyRef Name="WheelTypeID" />
+    </Key>
+    <Property Name="WheelTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WheelTypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Spokes" Type="int" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="Profile" Type="int" Nullable="false" />
+    <Property Name="Diameter" Type="int" Nullable="false" />
+    <Property Name="Alloy" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_VehicleStockItem_Colour">
+    <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colour">
+        <PropertyRef Name="ColourID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="ColourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleStockItem_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleTypeID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="VehicleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleStockItem_WheelType">
+    <End Role="WheelType" Type="Self.WheelType" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WheelType">
+        <PropertyRef Name="WheelTypeID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="WheelTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VehicleSalesTrackerModelStoreContainer">
+    <EntitySet Name="Colour" EntityType="Self.Colour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleStockItem" EntityType="Self.VehicleStockItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WheelType" EntityType="Self.WheelType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_VehicleStockItem_Colour" Association="Self.FK_VehicleStockItem_Colour">
+      <End Role="Colour" EntitySet="Colour" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleStockItem_VehicleType" Association="Self.FK_VehicleStockItem_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleType" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleStockItem_WheelType" Association="Self.FK_VehicleStockItem_WheelType">
+      <End Role="WheelType" EntitySet="WheelType" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

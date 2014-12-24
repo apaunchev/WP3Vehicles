@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VehicleSalesTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Colour">
+    <Key>
+      <PropertyRef Name="ColourID" />
+    </Key>
+    <Property Name="ColourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColourName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Metallic" Type="Boolean" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VehicleStockItems" Relationship="Self.FK_VehicleStockItem_Colour" FromRole="Colour" ToRole="VehicleStockItem" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VehicleStockItem">
+    <Key>
+      <PropertyRef Name="VehicleStockItemID" />
+    </Key>
+    <Property Name="VehicleStockItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColourID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+    <Property Name="WheelTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Make" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Registration" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Automatic" Type="Boolean" Nullable="false" />
+    <Property Name="Sold" Type="Boolean" Nullable="false" />
+    <Property Name="StockEntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateNew" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Colour" Relationship="Self.FK_VehicleStockItem_Colour" FromRole="VehicleStockItem" ToRole="Colour" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK_VehicleStockItem_VehicleType" FromRole="VehicleStockItem" ToRole="VehicleType" />
+    <NavigationProperty Name="WheelType" Relationship="Self.FK_VehicleStockItem_WheelType" FromRole="VehicleStockItem" ToRole="WheelType" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NoDoors" Type="Int32" Nullable="false" />
+    <Property Name="MaxSeats" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VehicleStockItems" Relationship="Self.FK_VehicleStockItem_VehicleType" FromRole="VehicleType" ToRole="VehicleStockItem" />
+  </EntityType>
+  <EntityType Name="WheelType">
+    <Key>
+      <PropertyRef Name="WheelTypeID" />
+    </Key>
+    <Property Name="WheelTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WheelTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Spokes" Type="Int32" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Profile" Type="Int32" Nullable="false" />
+    <Property Name="Diameter" Type="Int32" Nullable="false" />
+    <Property Name="Alloy" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="VehicleStockItems" Relationship="Self.FK_VehicleStockItem_WheelType" FromRole="WheelType" ToRole="VehicleStockItem" />
+  </EntityType>
+  <Association Name="FK_VehicleStockItem_Colour">
+    <End Role="Colour" Type="Self.Colour" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colour">
+        <PropertyRef Name="ColourID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="ColourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleStockItem_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleTypeID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="VehicleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleStockItem_WheelType">
+    <End Role="WheelType" Type="Self.WheelType" Multiplicity="1" />
+    <End Role="VehicleStockItem" Type="Self.VehicleStockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WheelType">
+        <PropertyRef Name="WheelTypeID" />
+      </Principal>
+      <Dependent Role="VehicleStockItem">
+        <PropertyRef Name="WheelTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VehicleSalesContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Colours" EntityType="Self.Colour" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VehicleStockItems" EntityType="Self.VehicleStockItem" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+    <EntitySet Name="WheelTypes" EntityType="Self.WheelType" />
+    <AssociationSet Name="FK_VehicleStockItem_Colour" Association="Self.FK_VehicleStockItem_Colour">
+      <End Role="Colour" EntitySet="Colours" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleStockItem_VehicleType" Association="Self.FK_VehicleStockItem_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleStockItem_WheelType" Association="Self.FK_VehicleStockItem_WheelType">
+      <End Role="WheelType" EntitySet="WheelTypes" />
+      <End Role="VehicleStockItem" EntitySet="VehicleStockItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
